@@ -7,7 +7,6 @@ from app.models.berry import Berry
 from app.api.core.poke_stats_response import PokeStatsResponse
 from app.services.berry_service import fetch_berry_data, calculate_berry_statistics, generate_histogram
 from app.config import settings
-import json
 
 router = APIRouter()
 

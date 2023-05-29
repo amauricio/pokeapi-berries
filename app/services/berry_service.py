@@ -4,6 +4,12 @@ from app.models.berry import Berry
 from statistics import mean, median, variance
 from collections import Counter
 from functools import lru_cache
+import io
+import seaborn as sns
+import matplotlib
+matplotlib.use('agg')
+import pandas as pd
+import base64
 
 @lru_cache(maxsize=10)
 def fetch_berry_data() -> List[Berry]:
@@ -44,6 +50,28 @@ def fetch_berry_details(name: str) -> Berry:
         return Berry(name=name, growth_time=growth_time)
     else:
         raise Exception("Failed to fetch data details from the PokeAPI :(")
+
+def generate_histogram(berries: List[Berry]) -> str:
+    """
+    Generate histogram in base64 using matplotlib
+    """
+    if not berries:
+        raise ValueError("List of berries is empty")
+
+    data = [str(berry.growth_time) for berry in berries]
+
+    # generate the plot using seaborn
+    sns.set(style="darkgrid")
+    plot = sns.histplot(  data=data,  kde=True)
+    plot.set(xlabel='Growth Time', ylabel='Count', title="PokeAPI-Berries Histogram")
+
+    # save the plot to a byte buffer
+    buf = io.BytesIO()
+    plot.figure.savefig(buf, format='png')
+    buf.seek(0)
+
+    # create the html string
+    return base64.b64encode(buf.getvalue()).decode('utf8')
 
 def calculate_berry_statistics(berries: List[Berry]) -> dict:
     """

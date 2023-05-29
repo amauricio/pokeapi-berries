@@ -1,5 +1,5 @@
 # Poke-berries statistics API
-[![Deploy to Heroku](https://github.com/amauricio/pokeapi-berries/actions/workflows/heroku.yml/badge.svg)](https://github.com/amauricio/pokeapi-berries/actions/workflows/heroku.yml)
+[![Deploy to Heroku](https://github.com/amauricio/pokeapi-berries/actions/workflows/heroku.yml/badge.svg?branch=main)](https://github.com/amauricio/pokeapi-berries/actions/workflows/heroku.yml)
 ## Overview
 
 The Poke-Berries Statistics API provides statistical information about various berries in the Pokemon universe. It retrieves data from the PokeAPI and calculates metrics such as minimum growth time, median growth time, maximum growth time, variance of growth time, mean growth time, and frequency distribution of growth time.
